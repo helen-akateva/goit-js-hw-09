@@ -16,11 +16,7 @@
 @import url('./badges.css');
 @import url('./back-link.css');
 
-ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
+
 
 .gallery {
   display: flex;
@@ -37,6 +33,22 @@ ul {
   object-fit: cover;
   transition: all 0.3s ease;
   cursor: pointer;
+}
+
+.sl-wrapper .sl-close {
+  color: #fff !important;
+}
+
+.sl-wrapper .sl-navigation button {
+  color: #fff !important;
+}
+
+.sl-wrapper .sl-counter {
+  color: #fff !important;
+}
+
+.sl-wrapper {
+  background: rgba(46, 47, 66, 0.8);
 }
 
 .feedback-form {
@@ -100,4 +112,3 @@ ul {
 .feedback-form button:hover {
   background-color: #6c8cff;
 }
-
