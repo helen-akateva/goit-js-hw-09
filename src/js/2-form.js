@@ -2,12 +2,14 @@ const LS_KEY = 'feedback-form-state';
 const formData = { email: '', message: '' };
 
 const formEl = document.querySelector('.feedback-form');
+
 formEl.addEventListener('submit', handleFormSubmit);
 formEl.addEventListener('input', handleFormInput);
 populateForm();
 
 function handleFormSubmit(event) {
   event.preventDefault();
+
   const form = event.currentTarget;
   const email = form.elements.email.value.trim();
   const message = form.elements.message.value.trim();
@@ -17,6 +19,7 @@ function handleFormSubmit(event) {
     return;
   }
   console.log({ email, message });
+
   localStorage.removeItem(LS_KEY);
   form.reset();
 }
