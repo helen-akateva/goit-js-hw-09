@@ -9,16 +9,16 @@ populateForm();
 function handleFormSubmit(event) {
   event.preventDefault();
   const form = event.currentTarget;
-  console.log(formData);
-  if (formData.email === '' || formData.message === '') {
+  const email = form.elements.email.value.trim();
+  const message = form.elements.message.value.trim();
+
+  if (email === '' || message === '') {
     alert('Fill please all fields');
     return;
   }
-
+  console.log({ email, message });
   localStorage.removeItem(LS_KEY);
   form.reset();
-  formData.email = '';
-  formData.message = '';
 }
 
 function handleFormInput(event) {
