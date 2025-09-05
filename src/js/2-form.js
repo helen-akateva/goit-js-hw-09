@@ -8,14 +8,13 @@ populateForm();
 
 function handleFormSubmit(event) {
   event.preventDefault();
-  const form = event.target;
-  console.log('Send data');
-
+  const form = event.currentTarget;
+  console.log(formData);
   if (formData.email === '' || formData.message === '') {
     alert('Fill please all fields');
-  } else {
-    console.log(formData);
+    return;
   }
+
   localStorage.removeItem(LS_KEY);
   form.reset();
   formData.email = '';
@@ -27,17 +26,17 @@ function handleFormInput(event) {
   const formMeta = new FormData(form);
 
   for (const [key, value] of formMeta) {
-    formData[key] = value;
+    formData[key] = value.trim();
   }
   localStorage.setItem(LS_KEY, JSON.stringify(formData));
 }
 
 function populateForm() {
-  const dataFromLS = localStorage.getItem(LS_KEY);
-  if (!dataFromLS) {
-    return;
-  }
   try {
+    const dataFromLS = localStorage.getItem(LS_KEY);
+    if (!dataFromLS) {
+      return;
+    }
     const data = JSON.parse(dataFromLS);
     const emailInput = formEl.querySelector('input[name="email"]');
     emailInput.value = data.email;
