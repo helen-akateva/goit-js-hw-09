@@ -1,3 +1,4 @@
+import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
 const refs = {
@@ -71,18 +72,21 @@ const images = [
 
 function createMarkup(images) {
   return images
-    .map(item => {
+    .map(({ original, preview, description }) => {
       return `<li class="gallery-item">
-	<a class="gallery-link" href="${item.original}">
-		<img 
-		  class="gallery-image" 
-		  src="${item.preview}" 
-		  alt="${item.description}" 
-		/>
-	</a>
-</li>`;
+      <a class="gallery-link" href="${original}">
+        <img src="${preview}" alt="${description}" />
+      </a>
+    </li>`;
     })
     .join('');
 }
 
 refs.galleryListEl.innerHTML = createMarkup(images);
+
+new SimpleLightbox('.gallery a', {
+  captionsData: 'alt',
+  captionPosition: 'bottom',
+  captions: true,
+  captionDelay: 250,
+});
